@@ -38,3 +38,4 @@ class ToolsFrame(tk.Frame):
 
         self.quit_button = tk.Button(self, text="Quit")
         self.quit_button.grid(row=9, column=0, sticky="ew")
+    
