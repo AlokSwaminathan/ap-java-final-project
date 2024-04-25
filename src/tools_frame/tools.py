@@ -23,36 +23,33 @@ class ToolsFrame(tk.Frame):
 
     def create_widgets(self):
 
-        self.color_button = ColorButton(self,master=self.master,canvas=self.canvas)
+        self.color_button = ColorButton(self,canvas=self.canvas)
         self.color_button.grid(row=0, column=0, sticky="ew")
 
-        self.size_button = LineButton(self,master=self.master,canvas=self.canvas)
+        self.size_button = LineButton(self,canvas=self.canvas)
         self.size_button.grid(row=1, column=0, sticky="ew")
 
-        self.fill_button = FillButton(self,master=self.master,canvas=self.canvas)
+        self.fill_button = FillButton(self,canvas=self.canvas)
         self.fill_button.grid(row=2, column=0, sticky="ew")
 
-        self.text_button = TextButton(self,master=self.master,canvas=self.canvas)
+        self.text_button = TextButton(self,canvas=self.canvas)
         self.text_button.grid(row=3, column=0, sticky="ew")
 
-        self.line_button = LineButton(self,master=self.master,canvas=self.canvas)
+        self.line_button = LineButton(self,canvas=self.canvas)
         self.line_button.grid(row=4, column=0, sticky="ew")
 
-        self.shape_button = ShapeButton(self,master=self.master,canvas=self.canvas)
+        self.shape_button = ShapeButton(self,canvas=self.canvas)
         self.shape_button.grid(row=5, column=0, sticky="ew")
 
-        self.undo_button = UndoButton(self,master=self.master,canvas=self.canvas)
+        self.undo_button = UndoButton(self,canvas=self.canvas)
         self.undo_button.grid(row=6, column=0, sticky="ew")
 
-        self.redo_button = RedoButton(self,master=self.master,canvas=self.canvas)
+        self.redo_button = RedoButton(self,canvas=self.canvas)
         self.redo_button.grid(row=7, column=0, sticky="ew")
 
-        self.clear_button = ClearButton(self,master=self.master,canvas=self.canvas)
+        self.clear_button = ClearButton(self,canvas=self.canvas)
         self.clear_button.grid(row=8, column=0, sticky="ew")
 
-        self.quit_button = QuitButton(self,master=self.master,canvas=self.canvas)
-        self.quit_button.grid(row=9, column=0, sticky="ew")
-
-        self.canvas_size = CanvasSizeButton(self,master=self.master,canvas=self.canvas)
+        self.canvas_size = CanvasSizeButton(self,canvas=self.canvas)
         self.canvas_size.grid(row=10, column=0, sticky="ew")
     

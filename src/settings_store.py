@@ -16,18 +16,28 @@ class SettingsStore:
   def _load_settings(self):
     # Load settings from JSON file
     if not os.path.exists(self.settings_file):
-      self.settings = default_settings
+      self.default_settings = default_settings
     else:
       with open(self.settings_file,'r') as file:
-        self.settings = json.load(file)
+        self.default_settings = json.load(file)
+    self.current_settings = self.default_settings.copy()
 
-  def get_setting(self, key):
-    return self.settings.get(key)
+  def get_default(self, key):
+    return self.default_settings.get(key)
 
-  def set_setting(self, key, value):
-    self.settings[key] = value
+  def set_default(self, key, value):
+    self.default_settings[key] = value
+
+  def get_current(self, key):
+    return self.current_settings.get(key)
+
+  def set_current(self, key, value):
+    self.current_settings[key] = value
 
   def save_settings(self):
     # Save settings to JSON file
-    with open('settings.json', 'w') as file:
-      json.dump(self.settings, file)
+    if not os.path.exists(get_program_folder()):
+      os.makedirs(get_program_folder())
+    with open(self.settings_file, 'w') as file:
+      json.dump(self.default_settings, file,indent=2)
+    print(f"Settings saved to {self.settings_file}")

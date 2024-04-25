@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from drawing import DrawingCanvas
+from settings_store import SettingsStore
 from tools_frame.tools import ToolsFrame
 
 class Window(tk.Tk):
@@ -16,3 +17,7 @@ class Window(tk.Tk):
 
     self.rowconfigure(0, weight=1)
     self.columnconfigure(1, weight=4)
+
+  def run(self):
+    self.mainloop()
+    SettingsStore().save_settings()

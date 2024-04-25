@@ -1,11 +1,17 @@
 import tkinter as tk
 
+from src.settings_store import SettingsStore
+
 class DrawingCanvas(tk.Canvas):
   def __init__(self, master=None):
     super().__init__(master)
+
+    self.settings = SettingsStore()
+
     self.grid(row=0, column=1, sticky="nsew")
-    self.create_text(400, 300, text="Welcome to PyDraw!", font=("Helvetica", 32))
-    self.config(bg="white", width=800, height=600)
+    print(self.settings.get_default("canvas_width"))
+    print(self.settings.get_default("canvas_height"))
+    self.config(bg="white", width=self.settings.get_default("canvas_width"), height=self.settings.get_default("canvas_height"))
 
     self.lastx, self.lasty = None, None
     self.bind("<B1-Motion>", self.draw)
