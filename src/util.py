@@ -1,5 +1,7 @@
 import os
 
+
+# Gets folder for program files
 def get_program_folder():
   if os.name == 'posix':  # Unix-based systems (Linux, macOS)
     return os.path.expanduser("~/Documents/Programs/PyDraw")
