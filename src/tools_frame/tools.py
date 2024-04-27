@@ -12,6 +12,8 @@ from tools_frame.buttons.redo import RedoButton
 from tools_frame.buttons.shape import ShapeButton
 from tools_frame.buttons.text import TextButton
 from tools_frame.buttons.undo import UndoButton
+from tools_frame.buttons.thickness import ThicknessButton
+
 
 
 class ToolsFrame(tk.Frame):
@@ -62,3 +64,6 @@ class ToolsFrame(tk.Frame):
 
     self.canvas_size = CanvasSizeButton(self, canvas=self.canvas)
     self.canvas_size.grid(row=11, column=0, sticky="ew")
+
+    self.thickness_button = ThicknessButton(self, canvas=self.canvas)
+    self.thickness_button.grid(row=12, column=0, sticky="ew")
