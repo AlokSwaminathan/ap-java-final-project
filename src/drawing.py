@@ -1,6 +1,5 @@
 import tkinter as tk
-
-from src.settings_store import SettingsStore
+from settings_store import SettingsStore
 
 
 class DrawingCanvas(tk.Canvas):
