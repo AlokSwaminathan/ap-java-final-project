@@ -24,7 +24,7 @@ class DrawingCanvas(tk.Canvas):
         self.history = []
 
     def draw(self, event):
-        """Draw on the canvas based on mouse movement."""
+        # Draw on the canvas based on mouse movement
         x, y = event.x, event.y
         if self.lastx and self.lasty:
             # Draw a line using the current pen size and color
@@ -36,5 +36,5 @@ class DrawingCanvas(tk.Canvas):
         self.lastx, self.lasty = x, y
 
     def reset_last_position(self, event):
-        """Reset the last drawing position."""
+        # Reset the last drawing position
         self.lastx, self.lasty = None, None
