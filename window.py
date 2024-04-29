@@ -1,8 +1,6 @@
 import tkinter as tk
 from tkinter.colorchooser import askcolor
-from drawing import DrawingPad
-from saving import DrawingSaver
-import settings
+from drawing import DrawingCanvas
 
 class DrawingApp:
     def __init__(self, root):

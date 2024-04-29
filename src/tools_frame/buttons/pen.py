@@ -24,11 +24,6 @@ class PenButton(tk.Button):
         # Draw a filled circle centered at the current cursor position
         self.canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=self.canvas.pen_color, outline=self.canvas.pen_color)
 
-
-        # Optional: If you want to draw squares instead of circles, replace the `create_oval` method with `create_rectangle`
-        # Uncomment the following line to draw squares
-        # self.canvas.create_rectangle(x - radius, y - radius, x + radius, y + radius, fill=self.canvas.pen_color, outline=self.canvas.pen_color)
-        
         # Update the last drawing position
         self.canvas.lastx, self.canvas.lasty = x, y
 
