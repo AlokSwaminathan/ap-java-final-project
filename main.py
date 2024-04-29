@@ -1,9 +1,10 @@
 from window import Window
 
+
 def main():
-  window: Window = Window()
-  window.mainloop()
+    window: Window = Window()
+    window.mainloop()
+
 
 if __name__ == '__main__':
-  main()
-
+    main()

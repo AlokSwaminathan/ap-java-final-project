@@ -2,7 +2,7 @@ import tkinter as tk
 
 
 class UndoButton(tk.Button):
-  def __init__(self, master=None, canvas=None):
-    super().__init__(master)
-    self.canvas = canvas
-    self.config(text="Undo")
+    def __init__(self, master=None, canvas=None):
+        super().__init__(master)
+        self.canvas = canvas
+        self.config(text="Undo")
