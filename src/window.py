@@ -1,6 +1,5 @@
 import tkinter as tk
 
-from drawing import DrawingCanvas
 from settings_store import SettingsStore
 from tools_frame.tools import ToolsFrame
 
