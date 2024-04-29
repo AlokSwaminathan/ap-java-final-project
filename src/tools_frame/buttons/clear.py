@@ -9,6 +9,6 @@ class ClearButton(tk.Button):
         self.config(text="Clear", command=self.clear)
 
     def clear(self):
-        """Clear the entire canvas."""
+        # Clear the entire canvas
         # Use canvas.delete("all") to remove all content from the canvas
         self.canvas.delete("all")
