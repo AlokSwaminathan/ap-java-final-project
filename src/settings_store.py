@@ -1,7 +1,6 @@
 import json
 import os
 from util import get_program_folder
-from default_settings import default_settings
 import tkinter as tk
 from tkinter import colorchooser
 

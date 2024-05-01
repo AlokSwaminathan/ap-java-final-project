@@ -25,43 +25,32 @@ class ToolsFrame(tk.Frame):
 
         self.create_widgets()
 
+        self.setActiveTool(self.pen_button)
+
     def create_widgets(self):
-
         self.pen_button = PenButton(self, canvas=self.canvas)
-        self.pen_button.grid(row=0, column=0, sticky="ew")
-
         self.eraser_button = EraserButton(self, canvas=self.canvas)
-        self.eraser_button.grid(row=1, column=0, sticky="ew")
-
         self.color_button = ColorButton(self, canvas=self.canvas)
-        self.color_button.grid(row=2, column=0, sticky="ew")
-
         self.size_button = LineButton(self, canvas=self.canvas)
-        self.size_button.grid(row=3, column=0, sticky="ew")
-
         self.fill_button = FillButton(self, canvas=self.canvas)
-        self.fill_button.grid(row=4, column=0, sticky="ew")
-
         self.text_button = TextButton(self, canvas=self.canvas)
-        self.text_button.grid(row=5, column=0, sticky="ew")
-
         self.line_button = LineButton(self, canvas=self.canvas)
-        self.line_button.grid(row=6, column=0, sticky="ew")
-
         self.shape_button = ShapeButton(self, canvas=self.canvas)
-        self.shape_button.grid(row=7, column=0, sticky="ew")
-
         self.undo_button = UndoButton(self, canvas=self.canvas)
-        self.undo_button.grid(row=8, column=0, sticky="ew")
-
         self.redo_button = RedoButton(self, canvas=self.canvas)
-        self.redo_button.grid(row=9, column=0, sticky="ew")
-
-        self.clear_button = ClearButton(self, canvas=self.canvas)
-        self.clear_button.grid(row=10, column=0, sticky="ew")
-
         self.canvas_size = CanvasSizeButton(self, canvas=self.canvas)
-        self.canvas_size.grid(row=11, column=0, sticky="ew")
-
         self.thickness_button = ThicknessButton(self, canvas=self.canvas)
-        self.thickness_button.grid(row=12, column=0, sticky="ew")
+
+        # List of buttons, change order of list to change order buttons are rendered
+        self.buttons = [self.pen_button, self.eraser_button, self.color_button, self.size_button, self.fill_button, self.text_button,
+                        self.line_button, self.shape_button, self.undo_button, self.redo_button, self.canvas_size, self.thickness_button]
+        for i, button in enumerate(self.buttons):
+            button.grid(row=i, column=0, sticky="ew")
+    
+    def setActiveTool(self, button):
+        for b in self.buttons:
+            if b != button:
+                b.notPressed()
+            else:
+                b.pressed()
+        self.master.active_button = button

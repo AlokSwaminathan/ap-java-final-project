@@ -14,5 +14,4 @@ class ColorButton(tk.Button):
         # Open a color picker dialog
         color_code = colorchooser.askcolor()[1]
         if color_code:
-            self.settings.set_current("color", color_code)
-            self.canvas.pen_color = color_code
+            self.settings.color = color_code
