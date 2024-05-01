@@ -19,12 +19,22 @@ class SettingsStore:
 
     def _load_settings(self):
         # Load settings from JSON file
-        if not os.path.exists(self.settings_file):
-            self._default_settings = default_settings
-        else:
-            with open(self.settings_file, 'r') as file:
-                self._default_settings = json.load(file)
-        self._current_settings = self._default_settings.copy()
+        # if not os.path.exists(self.settings_file):
+        #     self._default_settings = default_settings
+        # else:
+        #     with open(self.settings_file, 'r') as file:
+        #         self._default_settings = json.load(file)
+        # self._current_settings = self._default_settings.copy()
+        self.color = "white"
+        self.canvas_width = 900
+        self.canvas_height = 600
+        self.save_path = os.path.join(get_program_folder(), "drawings/")
+        self.font = "Helvetica"
+        self.brush_size = 5
+        self.font_size = 32
+        self.eraser_size = 5
+        self.font_color = "black"
+        self.background_color = "gray75"
 
     def get_default(self, key):
         return self._default_settings.get(key)
@@ -39,12 +49,13 @@ class SettingsStore:
         self._current_settings[key] = value
 
     def save_settings(self):
-        # Save settings to JSON file
-        if not os.path.exists(get_program_folder()):
-            os.makedirs(get_program_folder())
-        with open(self.settings_file, 'w') as file:
-            json.dump(self._default_settings, file, indent=2)
-        print(f"Settings saved to {self.settings_file}")
+        pass
+        # # Save settings to JSON file
+        # if not os.path.exists(get_program_folder()):
+        #     os.makedirs(get_program_folder())
+        # with open(self.settings_file, 'w') as file:
+        #     json.dump(self._default_settings, file, indent=2)
+        # print(f"Settings saved to {self.settings_file}")
 
     def choose_color(self):
         """Open a color picker dialog and set the chosen color as the drawing color."""
@@ -52,6 +63,5 @@ class SettingsStore:
         color_code = colorchooser.askcolor()[1]
         # If a color is chosen
         if color_code:
-            self.settings.set_current("color", color_code)
-            self.settings.set_default("color", color_code)
-            self.canvas.pen_color = color_code
+            self.color = color_code
+            print(self.color)
