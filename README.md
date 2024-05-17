@@ -7,6 +7,8 @@ Drawing tool with pen (variable width and color), shapes, and text support. It w
 
 Document: https://docs.google.com/document/d/1Hl5M4Q6LZwzD7kjagNlrWiCkXct-ekjcbp83pEupA68/edit?usp=sharing
 
+UML Diagram: https://docs.google.com/drawings/d/1v0-QfgUlLjuggVJKYoFlP1tbtazM2KgtPqEJWou7quY/edit?usp=sharing
+
 ### Key Deadlines
 
 April 26 - Rudimentary design plan <br />
