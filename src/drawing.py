@@ -11,7 +11,7 @@ class DrawingCanvas(tk.Canvas):
 
         # Configure canvas
         self.config(bg="gray75", height=self.settings.canvas_height,
-                    width=self.settings.canvas_width)
+                    width=self.settings.canvas_width,cursor="plus")
 
         # Initialize drawing position variables
         self.lastx, self.lasty = None, None
@@ -24,20 +24,9 @@ class DrawingCanvas(tk.Canvas):
         self.history = []
 
     def draw(self, event):
-        # Draw on the canvas based on mouse movement
-        x, y = event.x, event.y
-        if self.lastx and self.lasty:
-            # Draw a line using the current pen size and color
-            line_id = self.create_polygon(
-                self.lastx, self.lasty, x, y, fill=self.settings.color, outline=self.settings.color, width=self.settings.brush_size)
-            print(line_id)
-            # Store the line ID in the history stack for undo functionality
-            self.history.append(line_id)
-
-        # Update the last drawing position
-        self.lastx, self.lasty = x, y
+        self.active_tool.action(self, event)
 
     def reset_last_position(self, event):
         # Reset the last drawing position
-        
+        self.active_tool.reset(self, event) if hasattr(self.active_tool, "reset") else None
         self.lastx, self.lasty = None, None

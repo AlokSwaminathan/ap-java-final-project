@@ -7,7 +7,6 @@ from tools_frame.buttons.eraser import EraserButton
 from tools_frame.buttons.fill import FillButton
 from tools_frame.buttons.line import LineButton
 from tools_frame.buttons.pen import PenButton
-from tools_frame.buttons.quit import QuitButton
 from tools_frame.buttons.redo import RedoButton
 from tools_frame.buttons.shape import ShapeButton
 from tools_frame.buttons.text import TextButton
@@ -46,11 +45,9 @@ class ToolsFrame(tk.Frame):
                         self.line_button, self.shape_button, self.undo_button, self.redo_button, self.canvas_size, self.thickness_button]
         for i, button in enumerate(self.buttons):
             button.grid(row=i, column=0, sticky="ew")
-    
+
     def setActiveTool(self, button):
         for b in self.buttons:
             if b != button:
-                b.notPressed()
-            else:
-                b.pressed()
-        self.master.active_button = button
+                b.release() if hasattr(b, 'release') else b.config(relief=tk.RAISED)
+        self.canvas.active_tool = button
