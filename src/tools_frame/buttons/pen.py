@@ -17,7 +17,13 @@ class PenButton(tk.Button):
     def set_pen(self):
         # Set the active button to be Pen
         self.master.setActiveTool(self)
-        self.canvas.config(cursor="pencil")
+        self.canvas.bind("<B1-Motion>", self.canvas.draw)
+        self.canvas.bind("<ButtonRelease-1>", self.canvas.reset_last_position)
+        self.canvas.config(cursor="")
+
+        # Optionally reset the pen settings if needed
+        self.canvas.pen_color = "white"
+        self.canvas.pen_size = 2
 
     def action(self, canvas, event):
         # Draw on the canvas based on mouse movement
