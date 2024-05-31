@@ -27,6 +27,9 @@ class DrawingCanvas(tk.Canvas):
         self.active_tool.action(self, event)
 
     def reset_last_position(self, event):
-        # Reset the last drawing position
-        self.active_tool.reset(self, event) if hasattr(self.active_tool, "reset") else None
         self.lastx, self.lasty = None, None
+
+    def undo_last_action(self):
+        if len(self.history) > 0:
+            last_item = self.history.pop()
+            self.delete(last_item)
