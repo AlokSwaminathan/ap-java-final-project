@@ -11,12 +11,13 @@ class DrawingCanvas(tk.Canvas):
 
         # Configure canvas
         self.config(bg="gray75", height=self.settings.canvas_height,
-                    width=self.settings.canvas_width,cursor="plus")
+                    width=self.settings.canvas_width,cursor="pencil")
 
         # Initialize drawing position variables
         self.lastx, self.lasty = None, None
 
         # Event bindings for drawing
+        self.bind("<Button-1>", self.initialPress)
         self.bind("<B1-Motion>", self.draw)
         self.bind("<ButtonRelease-1>", self.reset_last_position)
 
@@ -24,10 +25,15 @@ class DrawingCanvas(tk.Canvas):
         self.history = []
 
     def draw(self, event):
-        self.active_tool.action(self, event)
+        self.active_tool.action(self, event) if hasattr(self.active_tool, "action") else None
 
     def reset_last_position(self, event):
+        self.active_tool.cursorRelease(self, event) if hasattr(self.active_tool, "cursorRelease") else None
         self.lastx, self.lasty = None, None
+    
+    def initialPress(self, event):
+        self.lastx, self.lasty = event.x, event.y
+        self.active_tool.initialPress(self, event) if hasattr(self.active_tool, "initialPress") else None
 
     def undo_last_action(self):
         if len(self.history) > 0:
