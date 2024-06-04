@@ -15,3 +15,4 @@ class ColorButton(tk.Button):
         color_code = colorchooser.askcolor()[1]
         if color_code:
             self.settings.color = color_code
+        self.config(foreground=self.settings.color)

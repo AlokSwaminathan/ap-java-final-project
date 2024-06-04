@@ -29,3 +29,4 @@ class EraserButton(tk.Frame):
     def release(self):
         self.slider.grid_forget()
         self.button.config(relief=tk.RAISED)
+    
