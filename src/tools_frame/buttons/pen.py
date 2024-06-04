@@ -9,7 +9,7 @@ class PenButton(tk.Button):
 
         self.canvas = canvas
         # Set the button text and bind the set_pen method
-        self.config(text="Pen", command=self.set_pen,relief=tk.SUNKEN)
+        self.config(text="Pen", command=self.set_pen, relief=tk.SUNKEN)
 
         # Initialize pen size
         self.settings = SettingsStore()
@@ -17,13 +17,7 @@ class PenButton(tk.Button):
     def set_pen(self):
         # Set the active button to be Pen
         self.master.setActiveTool(self)
-        self.canvas.bind("<B1-Motion>", self.canvas.draw)
-        self.canvas.bind("<ButtonRelease-1>", self.canvas.reset_last_position)
-        self.canvas.config(cursor="")
-
-        # Optionally reset the pen settings if needed
-        self.canvas.pen_color = "white"
-        self.canvas.pen_size = 2
+        self.canvas.config(cursor="pencil")
 
     def action(self, canvas, event):
         # Draw on the canvas based on mouse movement
