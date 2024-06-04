@@ -38,4 +38,12 @@ class DrawingCanvas(tk.Canvas):
     def undo_last_action(self):
         if len(self.history) > 0:
             last_item = self.history.pop()
-            self.delete(last_item)
+            if type(last_item) == list:
+                for item in last_item:
+                    self.delete(item)
+            else:
+                self.delete(last_item)
+          
+    
+    def create_circle(self,x,y,r, **kwargs):
+        return self.create_oval(x-r, y-r, x+r, y+r, **kwargs)

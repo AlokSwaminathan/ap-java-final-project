@@ -14,6 +14,10 @@ class EraserButton(tk.Frame):
         self.grid_columnconfigure(0, weight=1)
         self.slider = tk.Scale(self, from_=1, to=100, orient=tk.HORIZONTAL)
         self.slider.grid_forget()
+        self.slider.set(10)
+
+        self.eraser_preview = None
+        self.erase_history = []
 
     def set_eraser(self):
         self.master.setActiveTool(self)
@@ -23,10 +27,26 @@ class EraserButton(tk.Frame):
     def action(self, canvas, event):
         x, y = event.x, event.y
         r = self.slider.get()
-        self.canvas.create_polygon(
-            canvas.lastx, canvas.lasty, x, y, fill=self.settings.background_color, outline=self.settings.background_color, width=self.slider.get())
+        line_id = self.canvas.create_circle(
+            x, y, r, fill=self.settings.background_color, outline=self.settings.background_color)
+        if line_id:
+            self.erase_history.append(line_id)
+
+        # Draw preview of eraser
+        if self.eraser_preview:
+            canvas.delete(self.eraser_preview)
+        self.eraser_preview = canvas.create_circle(
+            x, y, r, fill=self.settings.background_color, outline="black")
 
     def release(self):
         self.slider.grid_forget()
         self.button.config(relief=tk.RAISED)
-    
+
+    def cursorRelease(self, canvas, event):
+        canvas.delete(self.eraser_preview) if self.eraser_preview else None
+        canvas.config(cursor="dot")
+        canvas.history.append(self.erase_history)
+        self.erase_history = []
+
+    def initialPress(self, canvas, event):
+        canvas.config(cursor="none")

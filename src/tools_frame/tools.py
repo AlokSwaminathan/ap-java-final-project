@@ -42,7 +42,7 @@ class ToolsFrame(tk.Frame):
 
         # List of buttons, change order of list to change order buttons are rendered
         self.buttons = [self.pen_button, self.eraser_button, self.color_button, self.size_button, self.fill_button, self.text_button,
-                        self.line_button, self.shape_button, self.undo_button, self.redo_button, self.canvas_size, self.thickness_button]
+                        self.line_button, self.shape_button, self.undo_button, self.canvas_size, self.thickness_button]
         for i, button in enumerate(self.buttons):
             button.grid(row=i, column=0, sticky="ew")
 

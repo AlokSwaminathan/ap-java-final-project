@@ -12,10 +12,4 @@ class ClearButton(tk.Button):
         # Clear the entire canvas
         # Use canvas.delete("all") to remove all content from the canvas
         self.canvas.delete("all")
-
-    def press(self):
-        pass
-    
-    def release(self):
-        pass
     

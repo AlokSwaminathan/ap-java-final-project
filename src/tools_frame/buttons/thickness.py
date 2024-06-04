@@ -12,6 +12,7 @@ class ThicknessButton(tk.Scale):
         # Set the slider properties
         self.config(from_=1, to=100,
                     orient=tk.HORIZONTAL, label="Thickness(px)")
+        self.set(self.settings.brush_size)
         self.bind("<Motion>", self.adjust_thickness)
 
     def adjust_thickness(self, event):

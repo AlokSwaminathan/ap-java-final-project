@@ -14,6 +14,9 @@ class PenButton(tk.Button):
         # Initialize pen size
         self.settings = SettingsStore()
 
+        # Line History
+        self.line_history = []
+
     def set_pen(self):
         # Set the active button to be Pen
         self.master.setActiveTool(self)
@@ -27,11 +30,12 @@ class PenButton(tk.Button):
             line_id = canvas.create_polygon(
                 canvas.lastx, canvas.lasty, x, y, fill=self.settings.color, outline=self.settings.color, width=self.settings.brush_size)
             # Store the line ID in the history stack for undo functionality
-            canvas.history.append(line_id)
+            if line_id:
+                self.line_history.append(line_id)
 
         # Update the last drawing position
         canvas.lastx, canvas.lasty = x, y
 
-    def reset(self, canvas, event):
-        # Reset the last drawing position
-        canvas.lastx, canvas.lasty = None, None
+    def cursorRelease(self, canvas, event):
+        canvas.history.append(self.line_history)
+        self.line_history = []

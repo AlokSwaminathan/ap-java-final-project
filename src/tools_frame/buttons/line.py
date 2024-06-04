@@ -33,7 +33,8 @@ class LineButton(tk.Button):
         end_y = event.y
         if self.line_preview:
             canvas.delete(self.line_preview)
-        canvas.create_line(self.start_x, self.start_y, end_x, end_y,
+        line_id = canvas.create_line(self.start_x, self.start_y, end_x, end_y,
                            fill=self.settings.color, width=self.settings.brush_size)
+        canvas.history.append(line_id)
         self.start_x = None
         self.start_y = None
