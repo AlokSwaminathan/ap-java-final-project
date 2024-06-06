@@ -60,16 +60,17 @@ class ShapeButton(tk.Button):
         shape = None
         color = self.settings.color
         outline_width = self.settings.brush_size  # Set the thickness of the edges
+        fill_color = self.settings.fill_color
 
         if self.shape_type == "square":
             shape = canvas.create_rectangle(
-                start_x, start_y, end_x, end_y, outline=color, width=outline_width, fill="")
+                start_x, start_y, end_x, end_y, outline=color, width=outline_width, fill=fill_color)
         elif self.shape_type == "triangle":
             shape = canvas.create_polygon(start_x, start_y, end_x, start_y, (
-                start_x + end_x) / 2, end_y, outline=color, width=outline_width, fill="")
+                start_x + end_x) / 2, end_y, outline=color, width=outline_width, fill=fill_color)
         elif self.shape_type == "circle":
             shape = canvas.create_oval(
-                start_x, start_y, end_x, end_y, outline=color, width=outline_width, fill="")
+                start_x, start_y, end_x, end_y, outline=color, width=outline_width, fill=fill_color)
 
         if finalize and shape:
             canvas.history.append(shape)

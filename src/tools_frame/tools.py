@@ -5,6 +5,7 @@ from tools_frame.buttons.clear import ClearButton
 from tools_frame.buttons.color import ColorButton
 from tools_frame.buttons.eraser import EraserButton
 from tools_frame.buttons.fill import FillButton
+from tools_frame.buttons.fill_color_button import FillColorButton
 from tools_frame.buttons.line import LineButton
 from tools_frame.buttons.pen import PenButton
 from tools_frame.buttons.redo import RedoButton
@@ -39,10 +40,12 @@ class ToolsFrame(tk.Frame):
         self.redo_button = RedoButton(self, canvas=self.canvas)
         self.canvas_size = CanvasSizeButton(self, canvas=self.canvas)
         self.thickness_button = ThicknessButton(self, canvas=self.canvas)
+        self.clear_button = ClearButton(self, canvas=self.canvas)
+        self.fill_color = FillColorButton(self, canvas=self.canvas)
 
         # List of buttons, change order of list to change order buttons are rendered
-        self.buttons = [self.pen_button, self.eraser_button, self.color_button, self.size_button, self.fill_button, self.text_button,
-                        self.line_button, self.shape_button, self.undo_button, self.canvas_size, self.thickness_button]
+        self.buttons = [self.pen_button, self.eraser_button, self.color_button, self.size_button, self.text_button,
+                        self.line_button, self.shape_button, self.fill_color, self.undo_button, self.canvas_size, self.clear_button, self.thickness_button]
         for i, button in enumerate(self.buttons):
             button.grid(row=i, column=0, sticky="ew")
 
