@@ -12,11 +12,13 @@ def get_program_folder():
     else:
         return None  # Unsupported operating system
 
-    if not os.exists(path_str):
+    if not os.path.exists(path_str):
         os.makedirs(path_str)
     return path_str
 
+
 special_id = 0
+
 
 def get_special_id():
     global special_id

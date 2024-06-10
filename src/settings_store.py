@@ -24,7 +24,7 @@ class SettingsStore:
         #     with open(self.settings_file, 'r') as file:
         #         self._default_settings = json.load(file)
         # self._current_settings = self._default_settings.copy()
-        self.color = "white"
+        self.color = "black"
         self.canvas_width = 900
         self.canvas_height = 600
         self.save_path = os.path.join(get_program_folder(), "drawings/")
