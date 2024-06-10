@@ -3,7 +3,6 @@ import tkinter as tk
 from tools_frame.buttons.clear import ClearButton
 from tools_frame.buttons.color import ColorButton
 from tools_frame.buttons.eraser import EraserButton
-from tools_frame.buttons.fill import FillButton
 from tools_frame.buttons.fill_color_button import FillColorButton
 from tools_frame.buttons.line import LineButton
 from tools_frame.buttons.pen import PenButton
@@ -31,7 +30,6 @@ class ToolsFrame(tk.Frame):
         self.eraser_button = EraserButton(self, canvas=self.canvas)
         self.color_button = ColorButton(self, canvas=self.canvas)
         self.size_button = LineButton(self, canvas=self.canvas)
-        self.fill_button = FillButton(self, canvas=self.canvas)
         self.text_button = TextButton(self, canvas=self.canvas)
         self.line_button = LineButton(self, canvas=self.canvas)
         self.shape_button = ShapeButton(self, canvas=self.canvas)
