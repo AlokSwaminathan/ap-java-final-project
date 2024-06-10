@@ -1,4 +1,5 @@
 import tkinter as tk
+from drawing_logger import DrawingLogger
 from settings_store import SettingsStore
 
 
@@ -21,8 +22,8 @@ class DrawingCanvas(tk.Canvas):
         self.bind("<B1-Motion>", self.draw)
         self.bind("<ButtonRelease-1>", self.reset_last_position)
 
-        # Initialize a history stack for undo functionality
-        self.history = []
+        # Set up the logger for undo and redo functionality
+        self.logger = DrawingLogger(self)
 
     def draw(self, event):
         self.active_tool.action(self, event) if hasattr(
@@ -39,13 +40,10 @@ class DrawingCanvas(tk.Canvas):
             self.active_tool, "initialPress") else None
 
     def undo(self, event=None):
-        if len(self.history) > 0:
-            last_item = self.history.pop()
-            if type(last_item) == list:
-                for item in last_item:
-                    self.delete(item)
-            else:
-                self.delete(last_item)
+        self.logger.undo()
+
+    def redo(self, event=None):
+        self.logger.redo()
 
     def create_circle(self, x, y, r, **kwargs):
         return self.create_oval(x-r, y-r, x+r, y+r, **kwargs)

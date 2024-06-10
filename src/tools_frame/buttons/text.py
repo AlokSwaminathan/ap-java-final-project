@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import simpledialog
 
 from settings_store import SettingsStore
+from util import get_special_id
 
 
 class TextButton(tk.Button):
@@ -37,10 +38,8 @@ class TextButton(tk.Button):
     def initialPress(self, canvas, event):
         x, y = event.x, event.y
         font_size = self.font_slider.get()
-        text = canvas.create_text(x, y, text=self.current_text, font=(
-            "Arial", font_size), fill=self.settings.color)
-        if text:
-            canvas.history.append(text)
+        text = canvas.logger.create_text(x, y, text=self.current_text, font=(
+            "Arial", font_size), fill=self.settings.color,special_id=get_special_id())
 
     def getUserText(self):
         text = simpledialog.askstring("Text", "Enter text")

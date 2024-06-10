@@ -22,6 +22,7 @@ class Window(tk.Tk):
         # Bind Universal Keybinds here
         self.bind("<Control-z>", self.draw_canvas.undo) 
         self.bind("<Control-s>", self.draw_canvas.save)
+        self.bind("<Control-y>", self.draw_canvas.redo)
 
     def run(self):
         self.mainloop()

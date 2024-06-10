@@ -19,7 +19,7 @@ class ClearButton(tk.Button):
 
         # Create a label asking for confirmation
         label = tk.Label(
-            t, text="Are you sure you want\n to clear the canvas?")
+            t, text="Are you sure you want\n to clear the canvas?\n(This action cannot be undone)")
         label.pack()
 
         # Create yes and no buttons

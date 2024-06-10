@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from settings_store import SettingsStore
+from util import get_special_id
 
 
 class LineButton(tk.Button):
@@ -33,8 +34,7 @@ class LineButton(tk.Button):
         end_y = event.y
         if self.line_preview:
             canvas.delete(self.line_preview)
-        line_id = canvas.create_line(self.start_x, self.start_y, end_x, end_y,
-                           fill=self.settings.color, width=self.settings.brush_size)
-        canvas.history.append(line_id)
+        line_id = canvas.logger.create_line(self.start_x, self.start_y, end_x, end_y,
+                           fill=self.settings.color, width=self.settings.brush_size,special_id=get_special_id())
         self.start_x = None
         self.start_y = None

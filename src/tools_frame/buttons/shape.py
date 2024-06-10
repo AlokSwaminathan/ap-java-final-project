@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter.ttk import OptionMenu
 
 from settings_store import SettingsStore
+from util import get_special_id
 
 
 class ShapeButton(tk.Button):
@@ -20,19 +21,23 @@ class ShapeButton(tk.Button):
         t = tk.Toplevel()
         t.title("Shape Selection")
         t.geometry("200x100")
+
         def select_shape(shape):
             self.shape_type = shape
             t.destroy()
 
-        square_button = tk.Button(t, text="Square", command=lambda: select_shape("square"))
+        square_button = tk.Button(
+            t, text="Square", command=lambda: select_shape("square"))
         square_button.pack()
 
-        triangle_button = tk.Button(t, text="Triangle", command=lambda: select_shape("triangle"))
+        triangle_button = tk.Button(
+            t, text="Triangle", command=lambda: select_shape("triangle"))
         triangle_button.pack()
 
-        circle_button = tk.Button(t, text="Circle", command=lambda: select_shape("circle"))
+        circle_button = tk.Button(
+            t, text="Circle", command=lambda: select_shape("circle"))
         circle_button.pack()
-        
+
         self.master.setActiveTool(self)
         self.canvas.config(cursor="tcross")
 
@@ -61,17 +66,26 @@ class ShapeButton(tk.Button):
         color = self.settings.color
         outline_width = self.settings.brush_size  # Set the thickness of the edges
         fill_color = self.settings.fill_color
+        
+        kwargs = {
+            "outline": color,
+            "width": outline_width,
+            "fill": fill_color,
+        }
 
+        call_obj = canvas
+        if finalize:
+            call_obj = canvas.logger
+            kwargs["special_id"] = get_special_id()
+            
         if self.shape_type == "square":
-            shape = canvas.create_rectangle(
-                start_x, start_y, end_x, end_y, outline=color, width=outline_width, fill=fill_color)
+            shape = call_obj.create_rectangle(
+                start_x, start_y, end_x, end_y, **kwargs)
         elif self.shape_type == "triangle":
-            shape = canvas.create_polygon(start_x, start_y, end_x, start_y, (
-                start_x + end_x) / 2, end_y, outline=color, width=outline_width, fill=fill_color)
+            shape=call_obj.create_polygon(start_x, start_y, end_x, start_y, (
+                start_x + end_x) / 2, end_y, **kwargs)
         elif self.shape_type == "circle":
-            shape = canvas.create_oval(
-                start_x, start_y, end_x, end_y, outline=color, width=outline_width, fill=fill_color)
+            shape=call_obj.create_oval(
+                start_x, start_y, end_x, end_y, **kwargs)
 
-        if finalize and shape:
-            canvas.history.append(shape)
         return shape

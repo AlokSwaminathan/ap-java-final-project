@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from settings_store import SettingsStore
+from util import get_special_id
 
 
 class PenButton(tk.Button):
@@ -14,8 +15,6 @@ class PenButton(tk.Button):
         # Initialize pen size
         self.settings = SettingsStore()
 
-        # Line History
-        self.line_history = []
 
     def set_pen(self):
         # Set the active button to be Pen
@@ -27,15 +26,15 @@ class PenButton(tk.Button):
         x, y = event.x, event.y
         if canvas.lastx and canvas.lasty:
             # Draw a line using the current pen size and color
-            line_id = canvas.create_polygon(
-                canvas.lastx, canvas.lasty, x, y, fill=self.settings.color, outline=self.settings.color, width=self.settings.brush_size)
+            line_id = canvas.logger.create_polygon(
+                canvas.lastx, canvas.lasty, x, y, fill=self.settings.color, outline=self.settings.color, width=self.settings.brush_size,special_id=self.special_id)
             # Store the line ID in the history stack for undo functionality
-            if line_id:
-                self.line_history.append(line_id)
 
         # Update the last drawing position
         canvas.lastx, canvas.lasty = x, y
 
     def cursorRelease(self, canvas, event):
-        canvas.history.append(self.line_history)
-        self.line_history = []
+        pass
+    
+    def initialPress(self,canvas,event):
+        self.special_id = get_special_id()
