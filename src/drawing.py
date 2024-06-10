@@ -69,6 +69,13 @@ class DrawingCanvas(tk.Canvas):
 
     def get_save_path(self):
         from tkinter import filedialog
+        import os
+
+        initialdir = self.settings.save_path
+
+        if not os.path.exists(initialdir):
+            os.makedirs(initialdir)
+
         path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[
-                                            ("PNG files", "*.png")], initialdir=self.settings.save_path)
+                                            ("PNG files", "*.png")], initialdir=initialdir, initialfile="drawing.png")
         return path
