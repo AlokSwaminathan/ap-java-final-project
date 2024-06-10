@@ -19,6 +19,9 @@ class Window(tk.Tk):
         self.rowconfigure(0, weight=1)
         self.columnconfigure(1, weight=4)
 
+        # Bind Universal Keybinds here
+        self.bind("<Control-z>", self.draw_canvas.undo_last_action) 
+
     def run(self):
         self.mainloop()
         SettingsStore().save_settings()
