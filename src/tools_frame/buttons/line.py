@@ -1,7 +1,7 @@
 import tkinter as tk
 
 from settings_store import SettingsStore
-from util import get_special_id
+from util import bold, get_special_id
 
 
 class LineButton(tk.Button):
@@ -16,6 +16,7 @@ class LineButton(tk.Button):
 
     def set_line(self):
         self.master.setActiveTool(self)
+        bold(self)
 
     def initialPress(self, canvas, event):
         self.start_x = event.x

@@ -23,3 +23,6 @@ class ColorButton(tk.Frame):
         if color_code:
             self.settings.color = color_code
         self.color_view.config(bg=self.settings.color)
+
+    def release(self):
+        pass

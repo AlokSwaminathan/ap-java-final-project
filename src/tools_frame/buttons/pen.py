@@ -1,7 +1,7 @@
 import tkinter as tk
 
 from settings_store import SettingsStore
-from util import get_special_id
+from util import bold, get_special_id
 
 
 class PenButton(tk.Button):
@@ -20,6 +20,7 @@ class PenButton(tk.Button):
         # Set the active button to be Pen
         self.master.setActiveTool(self)
         self.canvas.config(cursor="pencil")
+        bold(self)
 
     def action(self, canvas, event):
         # Draw on the canvas based on mouse movement

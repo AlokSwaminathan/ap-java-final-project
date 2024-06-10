@@ -24,7 +24,6 @@ class FillColorButton(tk.Frame):
         self.sync_colors_button.config(
             text="Sync with Color", command=self.sync_color)
         self.sync_colors_button.grid(row=3, column=0, sticky="ew")
-        
 
     def choose_color(self):
         # Open a color picker dialog
@@ -36,7 +35,10 @@ class FillColorButton(tk.Frame):
     def set_transparent(self):
         self.settings.fill_color = ""
         self.color_view.config(bg="white", text="Transparent", fg="black")
-        
+
     def sync_color(self):
         self.settings.fill_color = self.settings.color
-        self.color_view.config(bg=self.settings.color)
+        self.color_view.config(bg=self.settings.color, text="")
+
+    def release(self):
+        pass

@@ -1,6 +1,6 @@
 import tkinter as tk
 from settings_store import SettingsStore
-from util import get_special_id
+from util import get_special_id, bold
 
 
 class EraserButton(tk.Frame):
@@ -23,12 +23,13 @@ class EraserButton(tk.Frame):
         self.master.setActiveTool(self)
         self.slider.grid(row=2, column=0, sticky="ew")
         self.canvas.config(cursor="dot")
+        bold(self.button)
 
     def action(self, canvas, event):
         x, y = event.x, event.y
         r = self.slider.get()
         line_id = self.canvas.logger.create_circle(
-            x, y, r, fill=self.settings.background_color, outline=self.settings.background_color,special_id=self.special_id)
+            x, y, r, fill=self.settings.background_color, outline=self.settings.background_color, special_id=self.special_id)
 
         # Draw preview of eraser
         if self.eraser_preview:
@@ -38,7 +39,7 @@ class EraserButton(tk.Frame):
 
     def release(self):
         self.slider.grid_forget()
-        self.button.config(relief=tk.RAISED)
+        bold(self.button, False)
 
     def cursorRelease(self, canvas, event):
         canvas.delete(self.eraser_preview) if self.eraser_preview else None

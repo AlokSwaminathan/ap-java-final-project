@@ -12,6 +12,7 @@ from tools_frame.buttons.text import TextButton
 from tools_frame.buttons.undo import UndoButton
 from tools_frame.buttons.thickness import ThicknessButton
 from tools_frame.buttons.save import SaveButton
+from util import bold
 
 
 class ToolsFrame(tk.Frame):
@@ -24,7 +25,7 @@ class ToolsFrame(tk.Frame):
 
         self.create_widgets()
 
-        self.setActiveTool(self.pen_button)
+        self.pen_button.set_pen()
 
     def create_widgets(self):
         self.pen_button = PenButton(self, canvas=self.canvas)
@@ -50,5 +51,5 @@ class ToolsFrame(tk.Frame):
     def setActiveTool(self, button):
         for b in self.buttons:
             if b != button:
-                b.release() if hasattr(b, 'release') else b.config(relief=tk.RAISED)
+                b.release() if hasattr(b, 'release') else bold(b, False)
         self.canvas.active_tool = button

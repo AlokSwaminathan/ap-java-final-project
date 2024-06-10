@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter.ttk import OptionMenu
 
 from settings_store import SettingsStore
-from util import get_special_id
+from util import bold, get_special_id
 
 
 class ShapeButton(tk.Button):
@@ -40,6 +40,7 @@ class ShapeButton(tk.Button):
 
         self.master.setActiveTool(self)
         self.canvas.config(cursor="tcross")
+        bold(self)
 
     def initialPress(self, canvas, event):
         self.start_x, self.start_y = event.x, event.y
@@ -66,7 +67,7 @@ class ShapeButton(tk.Button):
         color = self.settings.color
         outline_width = self.settings.brush_size  # Set the thickness of the edges
         fill_color = self.settings.fill_color
-        
+
         kwargs = {
             "outline": color,
             "width": outline_width,
@@ -77,15 +78,15 @@ class ShapeButton(tk.Button):
         if finalize:
             call_obj = canvas.logger
             kwargs["special_id"] = get_special_id()
-            
+
         if self.shape_type == "square":
             shape = call_obj.create_rectangle(
                 start_x, start_y, end_x, end_y, **kwargs)
         elif self.shape_type == "triangle":
-            shape=call_obj.create_polygon(start_x, start_y, end_x, start_y, (
+            shape = call_obj.create_polygon(start_x, start_y, end_x, start_y, (
                 start_x + end_x) / 2, end_y, **kwargs)
         elif self.shape_type == "circle":
-            shape=call_obj.create_oval(
+            shape = call_obj.create_oval(
                 start_x, start_y, end_x, end_y, **kwargs)
 
         return shape

@@ -17,3 +17,6 @@ class ThicknessButton(tk.Scale):
 
     def adjust_thickness(self, event):
         self.settings.brush_size = self.get()
+
+    def release(self):
+        pass

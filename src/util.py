@@ -1,3 +1,4 @@
+from tkinter.font import Font
 import os
 
 
@@ -24,3 +25,9 @@ def get_special_id():
     global special_id
     special_id += 1
     return special_id
+
+
+def bold(button, bold=True):
+    current_font = Font(button, button.cget("font"))
+    current_font.config(weight="bold" if bold else "normal")
+    button.config(font=current_font)
