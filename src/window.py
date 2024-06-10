@@ -20,7 +20,8 @@ class Window(tk.Tk):
         self.columnconfigure(1, weight=4)
 
         # Bind Universal Keybinds here
-        self.bind("<Control-z>", self.draw_canvas.undo_last_action) 
+        self.bind("<Control-z>", self.draw_canvas.undo) 
+        self.bind("<Control-s>", self.draw_canvas.save)
 
     def run(self):
         self.mainloop()

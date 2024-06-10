@@ -1,8 +1,8 @@
 import tkinter as tk
 
 
-class CanvasSizeButton(tk.Button):
+class CanvasSizeButton(tk.Label):
     def __init__(self, master=None, canvas=None):
         super().__init__(master)
         self.canvas = canvas
-        self.config(text="Canvas Size")
+        self.config(text="Canvas Size\n")

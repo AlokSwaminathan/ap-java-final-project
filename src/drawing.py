@@ -38,7 +38,7 @@ class DrawingCanvas(tk.Canvas):
         self.active_tool.initialPress(self, event) if hasattr(
             self.active_tool, "initialPress") else None
 
-    def undo_last_action(self, event=None):
+    def undo(self, event=None):
         if len(self.history) > 0:
             last_item = self.history.pop()
             if type(last_item) == list:
@@ -49,3 +49,26 @@ class DrawingCanvas(tk.Canvas):
 
     def create_circle(self, x, y, r, **kwargs):
         return self.create_oval(x-r, y-r, x+r, y+r, **kwargs)
+
+    def save(self, event=None):
+        print(event)
+        from PIL import Image, ImageTk
+        from io import BytesIO
+
+        # Output canvas to eps file in memory
+        eps = self.postscript(colormode='color')
+
+        # Convert eps to png
+
+        im = Image.open(BytesIO(bytes(eps, 'ascii')))
+
+        # Ask the user for a path to save the file to
+        path = self.get_save_path()
+
+        im.save(path, "png")
+
+    def get_save_path(self):
+        from tkinter import filedialog
+        path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[
+                                            ("PNG files", "*.png")], initialdir=self.settings.save_path)
+        return path
