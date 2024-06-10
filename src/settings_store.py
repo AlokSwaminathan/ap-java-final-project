@@ -31,7 +31,7 @@ class SettingsStore:
         self.font = "Helvetica"
         self.brush_size = 5
         self.font_size = 32
-        self.eraser_size = 5
+        self.eraser_size = 30
         self.font_color = "black"
         self.background_color = "white"
         self.fill_color = "gray75"
