@@ -33,8 +33,8 @@ class SettingsStore:
         self.font_size = 32
         self.eraser_size = 5
         self.font_color = "black"
-        self.background_color = "gray75"
-        self.fill_color = "black"
+        self.background_color = "white"
+        self.fill_color = "gray75"
 
     def get_default(self, key):
         return self._default_settings.get(key)

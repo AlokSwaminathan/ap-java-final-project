@@ -10,7 +10,7 @@ class DrawingCanvas(tk.Canvas):
         self.settings = SettingsStore()
 
         # Configure canvas
-        self.config(bg="gray75", height=self.settings.canvas_height,
+        self.config(bg=self.settings.background_color, height=self.settings.canvas_height,
                     width=self.settings.canvas_width, cursor="pencil")
 
         # Initialize drawing position variables
