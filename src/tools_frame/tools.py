@@ -37,7 +37,6 @@ class ToolsFrame(tk.Frame):
         self.shape_button = ShapeButton(self, canvas=self.canvas)
         self.undo_button = UndoButton(self, canvas=self.canvas)
         self.redo_button = RedoButton(self, canvas=self.canvas)
-        self.canvas_size = CanvasSizeButton(self, canvas=self.canvas)
         self.thickness_button = ThicknessButton(self, canvas=self.canvas)
         self.clear_button = ClearButton(self, canvas=self.canvas)
         self.fill_color = FillColorButton(self, canvas=self.canvas)
